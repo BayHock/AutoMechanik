@@ -6,13 +6,13 @@ var connectionString = builder.Configuration.GetConnectionString("AutoMechanikDb
 
 builder.Services.AddDbContext<AutoMechanikDbContext>(options => options.UseNpgsql(connectionString));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<AutoMechanikDbContext>();
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<AutoMechanikDbContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
-//Настройка ограничений password
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ password
 builder.Services.Configure<IdentityOptions>(options =>
 {
     options.Password.RequireUppercase = false;

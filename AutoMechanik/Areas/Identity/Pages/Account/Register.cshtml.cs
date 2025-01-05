@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using System.ComponentModel.DataAnnotations;
+using System.Net.Mail;
 using System.Text;
 using System.Text.Encodings.Web;
 
@@ -110,7 +111,7 @@ namespace AutoMechanik.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                    SendEmail(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
@@ -133,7 +134,32 @@ namespace AutoMechanik.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private IdentityUser CreateUser()
+		private static bool SendEmail(string email, string subject, string confirmLink)
+		{
+			try
+			{
+				MailMessage message = new MailMessage();
+				SmtpClient smtpClient = new SmtpClient();
+				message.From = new MailAddress("noreply@auto.mechanik");
+				message.To.Add(email);
+				message.Subject = subject;
+				message.IsBodyHtml = true;
+				message.Body = confirmLink;
+
+				smtpClient.Port = 587;
+				smtpClient.Host = "localhost";
+
+				smtpClient.Send(message);
+
+				return true;
+			}
+			catch (Exception)
+			{
+				return false;
+			}
+		}
+
+		private IdentityUser CreateUser()
         {
             try
             {
