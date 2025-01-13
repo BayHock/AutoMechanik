@@ -7,7 +7,10 @@
 	@if (SignInManager.IsSignedIn(User))
 	{
 		<li class="nav-item">
-			<a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)!</a>
+			<a id="registerOrg" class="nav-link text-dark" asp-controller="AuthCarService" asp-action="AuthCarServicePage" title="RegisterOrg">Регистрация автосервиса</a>
+		</li>
+		<li class="nav-item">
+			<a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)</a>
 		</li>
 		<li class="nav-item">
 			<form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
@@ -21,10 +24,10 @@
 		if (currentRoute != "/Account/Login" && currentRoute != "/Account/Register")
 		{
 			<li class="nav-item">
-				<a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+				<a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Регистрация</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Login">Log in</a>
+				<a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Login">Войти в аккаунт</a>
 			</li>
 		}
 	}

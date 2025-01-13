@@ -81,7 +81,7 @@ namespace AutoMechanik.Areas.Identity.Pages.Account
         {
             if (User.Identity.IsAuthenticated)
             {
-                Response.Redirect("/Base/Main");
+                Response.Redirect("/HomeUser/HomeUserPage");
             }
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
@@ -112,7 +112,7 @@ namespace AutoMechanik.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return RedirectToAction("Main", "Base");
+                    return RedirectToAction("HomeUserPage", "HomeUser");
                 }
                 if (result.RequiresTwoFactor)
                 {

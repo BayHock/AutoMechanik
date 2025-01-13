@@ -80,7 +80,7 @@ namespace AutoMechanik.Areas.Identity.Pages.Account
 		{
 			if (User.Identity.IsAuthenticated)
 			{
-				Response.Redirect("/Base/Main");
+				Response.Redirect("/HomeUser/HomeUserPage");
 			}
 			ReturnUrl = returnUrl;
 			ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
@@ -126,7 +126,7 @@ namespace AutoMechanik.Areas.Identity.Pages.Account
 					else
 					{
 						await _signInManager.SignInAsync(user, isPersistent: false);
-						return RedirectToAction("Main", "Base");
+						return RedirectToAction("HomeUserPage", "HomeUser");
 					}
 				}
 				foreach (var error in result.Errors)
