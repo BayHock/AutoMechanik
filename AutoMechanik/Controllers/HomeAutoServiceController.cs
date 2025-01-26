@@ -6,16 +6,15 @@ using System.Diagnostics;
 namespace AutoMechanik.Controllers
 {
 	[Authorize]
-	public class AuthCarServiceController : Controller
+	public class HomeAutoServiceController : Controller
 	{
-		private readonly ILogger<AuthCarServiceController> _logger;
+		private readonly ILogger<HomeAutoServiceController> _logger;
 
-		public AuthCarServiceController(ILogger<AuthCarServiceController> logger)
+		public HomeAutoServiceController(ILogger<HomeAutoServiceController> logger)
 		{
 			_logger = logger;
 		}
-
-		public IActionResult AuthCarServicePage()
+		public IActionResult HomeAutoServicePage()
 		{
 			return View();
 		}

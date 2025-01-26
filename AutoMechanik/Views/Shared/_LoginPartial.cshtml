@@ -7,9 +7,6 @@
 	@if (SignInManager.IsSignedIn(User))
 	{
 		<li class="nav-item">
-			<a id="registerOrg" class="nav-link text-dark" asp-controller="AuthCarService" asp-action="AuthCarServicePage" title="RegisterOrg">Регистрация автосервиса</a>
-		</li>
-		<li class="nav-item">
 			<a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)</a>
 		</li>
 		<li class="nav-item">
@@ -18,16 +15,27 @@
 			</form>
 		</li>
 	}
-	else
+	else //Обратить внимание на этот кусок говнакода!!!!
 	{
+		var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+		var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
 		var currentRoute = ViewContext.RouteData.Values["page"]?.ToString();
-		if (currentRoute != "/Account/Login" && currentRoute != "/Account/Register")
+
+		string isOnRegisterPage = "/Account/Register";
+		string isOnLoginPage = "/Account/Login";
+		string isOnRegisterAutoServicePage = "/Account/AutoService/RegisterAutoService";
+		string isOnLoginAutoServicePage = "/Account/AutoService/LoginAutoService";
+		bool isOnChoiceRolePage = (currentController == "Home" && currentAction == "ChoiceRolePage");
+
+		if (!(isOnChoiceRolePage) &&
+		(currentRoute != isOnRegisterPage) &&
+		(currentRoute != isOnLoginPage) &&
+		(currentRoute != isOnRegisterAutoServicePage) &&
+		(currentRoute != isOnLoginAutoServicePage)
+		)
 		{
 			<li class="nav-item">
-				<a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Регистрация</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Login">Войти в аккаунт</a>
+				<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ChoiceRolePage">Начать пользоваться веб-сервисом</a>
 			</li>
 		}
 	}

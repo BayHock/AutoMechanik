@@ -20,6 +20,11 @@ namespace AutoMechanik.Controllers
             return View();
         }
 
+        public IActionResult ChoiceRolePage()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
