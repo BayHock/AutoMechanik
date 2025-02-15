@@ -1,7 +1,8 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@using AutoMechanik.Areas.Identity.Data
+@using Microsoft.AspNetCore.Identity
 
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<AutoMechanikUser> SignInManager
+@inject UserManager<AutoMechanikUser> UserManager
 
 <ul class="navbar-nav">
 	@if (SignInManager.IsSignedIn(User))
@@ -17,25 +18,16 @@
 	}
 	else //Обратить внимание на этот кусок говнакода!!!!
 	{
-		var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
-		var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
 		var currentRoute = ViewContext.RouteData.Values["page"]?.ToString();
 
-		string isOnRegisterPage = "/Account/Register";
-		string isOnLoginPage = "/Account/Login";
-		string isOnRegisterAutoServicePage = "/Account/AutoService/RegisterAutoService";
-		string isOnLoginAutoServicePage = "/Account/AutoService/LoginAutoService";
-		bool isOnChoiceRolePage = (currentController == "Home" && currentAction == "ChoiceRolePage");
+		string isRegisterPage = "/Account/Register";
+		string isLoginPage = "/Account/Login";
+		string isRegisterConfirmationPage = "/Account/RegisterConfirmation";
 
-		if (!(isOnChoiceRolePage) &&
-		(currentRoute != isOnRegisterPage) &&
-		(currentRoute != isOnLoginPage) &&
-		(currentRoute != isOnRegisterAutoServicePage) &&
-		(currentRoute != isOnLoginAutoServicePage)
-		)
+		if (currentRoute != isRegisterPage && currentRoute != isLoginPage && currentRoute != isRegisterConfirmationPage)
 		{
 			<li class="nav-item">
-				<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ChoiceRolePage">Начать пользоваться веб-сервисом</a>
+				<a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Начать пользоваться веб-сервисом</a>
 			</li>
 		}
 	}

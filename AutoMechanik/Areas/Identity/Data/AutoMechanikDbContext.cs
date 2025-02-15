@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutoMechanik.Areas.Identity.Data;
 
-public class AutoMechanikDbContext : IdentityDbContext<IdentityUser>
+public class AutoMechanikDbContext : IdentityDbContext<AutoMechanikUser, AutoMechanikRole, string>
 {
     public AutoMechanikDbContext(DbContextOptions<AutoMechanikDbContext> options)
         : base(options)

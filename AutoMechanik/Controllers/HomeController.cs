@@ -1,11 +1,10 @@
 using AutoMechanik.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace AutoMechanik.Controllers
 {
-    public class HomeController : Controller
+	public class HomeController : Controller
     {
 
         private readonly ILogger<HomeController> _logger;
@@ -16,11 +15,6 @@ namespace AutoMechanik.Controllers
 		}
 
 		public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult ChoiceRolePage()
         {
             return View();
         }
