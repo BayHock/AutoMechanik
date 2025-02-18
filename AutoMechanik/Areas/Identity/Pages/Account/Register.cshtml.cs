@@ -71,6 +71,9 @@ namespace AutoMechanik.Areas.Identity.Pages.Account
 			[DataType(DataType.Password)]
 			[Display(Name = "Password")]
 			public string Password { get; set; }
+
+			[Required]
+			public string Role { get; set; }
 		}
 
 
@@ -78,7 +81,21 @@ namespace AutoMechanik.Areas.Identity.Pages.Account
 		{
 			if (User.Identity.IsAuthenticated)
 			{
-				Response.Redirect("/HomeUser/HomeUserPage");
+				var user = await _userManager.GetUserAsync(User);
+				var roles = await _userManager.GetRolesAsync(user);
+
+				if (roles.Contains("Client"))
+				{
+					Response.Redirect("HomeUser/HomeUserPage");
+				}
+				else if (roles.Contains("AutoService"))
+				{
+					Response.Redirect("HomeAutoService/HomeAutoServicePage");
+				}
+				else
+				{
+					Response.Redirect("/Home/Index");
+				}
 			}
 			ReturnUrl = returnUrl;
 			ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
@@ -100,31 +117,41 @@ namespace AutoMechanik.Areas.Identity.Pages.Account
 				{
 					_logger.LogInformation("User created a new account with password.");
 
-					var userId = await _userManager.GetUserIdAsync(user);
-					var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-					code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-					var callbackUrl = Url.Page(
-						"/Account/ConfirmEmail",
-						pageHandler: null,
-						values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-						protocol: Request.Scheme);
+					var roleResult = await _userManager.AddToRoleAsync(user, Input.Role);
 
-					//Default метод отправки Email Identity
-					/*await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-						$"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");*/
-
-					//Метод отправки Email локально
-					SendEmail(Input.Email, "Confirm your email",
-						$"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
-					if (_userManager.Options.SignIn.RequireConfirmedAccount)
+					if (roleResult.Succeeded)
 					{
-						return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
-					}
-					else
-					{
-						await _signInManager.SignInAsync(user, isPersistent: false);
-						return RedirectToAction("HomeUserPage", "HomeUser");
+						var userId = await _userManager.GetUserIdAsync(user);
+						var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+						code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+						var callbackUrl = Url.Page(
+							"/Account/ConfirmEmail",
+							pageHandler: null,
+							values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
+							protocol: Request.Scheme);
+
+						//Метод отправки Email локально
+						SendEmail(Input.Email, "Confirm your email",
+							$"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+						if (_userManager.Options.SignIn.RequireConfirmedAccount)
+						{
+							return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+						}
+						else
+						{
+							await _signInManager.SignInAsync(user, isPersistent: false);
+
+							if (Input.Role == "Client")
+							{
+								return RedirectToAction("HomeUserPage", "HomeUser");
+							}
+							else if (Input.Role == "AutoService")
+							{
+								return RedirectToAction("HomeAutoServicePage", "HomeAutoService");
+							}
+
+						}
 					}
 				}
 				foreach (var error in result.Errors)

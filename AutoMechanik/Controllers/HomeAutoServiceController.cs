@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace AutoMechanik.Controllers
 {
-	[Authorize]
+	[Authorize(Roles = "AutoService")]
 	public class HomeAutoServiceController : Controller
 	{
 		private readonly ILogger<HomeAutoServiceController> _logger;

@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace AutoMechanik.Controllers
 {
-	[Authorize]
+	[Authorize(Roles = "Client")]
 	public class HomeUserController : Controller
 	{
 		private readonly ILogger<HomeUserController> _logger;
