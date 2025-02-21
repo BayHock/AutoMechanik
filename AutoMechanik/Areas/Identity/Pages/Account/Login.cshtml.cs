@@ -89,11 +89,11 @@ namespace AutoMechanik.Areas.Identity.Pages.Account
 
 				if (roles.Contains("Client"))
 				{
-					Response.Redirect("HomeUser/HomeUserPage");
+					Response.Redirect("/HomeUser/HomeUserPage");
 				}
 				else if (roles.Contains("AutoService"))
 				{
-					Response.Redirect("HomeAutoService/HomeAutoServicePage");
+					Response.Redirect("/HomeAutoService/HomeAutoServicePage");
 				}
 				else
 				{

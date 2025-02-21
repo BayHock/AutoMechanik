@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 using AutoMechanik.Areas.Identity.Data;
+using AutoMechanik.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -59,6 +60,8 @@ namespace AutoMechanik.Areas.Identity.Pages.Account
 		///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
 		///     directly from your code. This API may change or be removed in future releases.
 		/// </summary>
+		
+		public EmailService EmailService { get; set; }
 
 		public class InputModel
 		{
@@ -86,11 +89,11 @@ namespace AutoMechanik.Areas.Identity.Pages.Account
 
 				if (roles.Contains("Client"))
 				{
-					Response.Redirect("HomeUser/HomeUserPage");
+					Response.Redirect("/HomeUser/HomeUserPage");
 				}
 				else if (roles.Contains("AutoService"))
 				{
-					Response.Redirect("HomeAutoService/HomeAutoServicePage");
+					Response.Redirect("/HomeAutoService/HomeAutoServicePage");
 				}
 				else
 				{
@@ -131,7 +134,7 @@ namespace AutoMechanik.Areas.Identity.Pages.Account
 							protocol: Request.Scheme);
 
 						//Метод отправки Email локально
-						SendEmail(Input.Email, "Confirm your email",
+						EmailService.SendEmail(Input.Email, "Confirm your email",
 							$"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
 						if (_userManager.Options.SignIn.RequireConfirmedAccount)
@@ -162,32 +165,6 @@ namespace AutoMechanik.Areas.Identity.Pages.Account
 
 			// If we got this far, something failed, redisplay form
 			return Page();
-		}
-
-		//Отправка email пользователю локально
-		private static bool SendEmail(string email, string subject, string confirmLink)
-		{
-			try
-			{
-				MailMessage message = new MailMessage();
-				SmtpClient smtpClient = new SmtpClient();
-				message.From = new MailAddress("noreply@auto.mechanik");
-				message.To.Add(email);
-				message.Subject = subject;
-				message.IsBodyHtml = true;
-				message.Body = confirmLink;
-
-				smtpClient.Port = 587;
-				smtpClient.Host = "localhost";
-
-				smtpClient.Send(message);
-
-				return true;
-			}
-			catch (Exception)
-			{
-				return false;
-			}
 		}
 
 		private AutoMechanikUser CreateUser()
