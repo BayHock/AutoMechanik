@@ -1,20 +1,20 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using AutoMechanik.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutoMechanik.Areas.Identity.Data;
 
 public class AutoMechanikDbContext : IdentityDbContext<AutoMechanikUser, AutoMechanikRole, string>
 {
-    public AutoMechanikDbContext(DbContextOptions<AutoMechanikDbContext> options)
-        : base(options)
-    {
-    }
+	public AutoMechanikDbContext(DbContextOptions<AutoMechanikDbContext> options)
+		: base(options)
+	{
+	}
 
-    protected override void OnModelCreating(ModelBuilder builder)
-    {
-        base.OnModelCreating(builder);
-        // Customize the ASP.NET Identity model and override the defaults if needed.
-        // For example, you can rename the ASP.NET Identity table names and more.
-        // Add your customizations after calling base.OnModelCreating(builder);
-    }
+	public DbSet<ApplicationModel> Applications { get; set; }
+
+	protected override void OnModelCreating(ModelBuilder builder)
+	{
+		base.OnModelCreating(builder);		
+	}
 }

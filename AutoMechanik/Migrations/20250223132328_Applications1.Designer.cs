@@ -3,6 +3,7 @@ using System;
 using AutoMechanik.Areas.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AutoMechanik.Migrations
 {
     [DbContext(typeof(AutoMechanikDbContext))]
-    partial class AutoMechanikDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250223132328_Applications1")]
+    partial class Applications1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
