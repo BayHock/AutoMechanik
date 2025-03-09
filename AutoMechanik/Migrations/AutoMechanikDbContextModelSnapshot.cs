@@ -135,7 +135,7 @@ namespace AutoMechanik.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Applications");
+                    b.ToTable("Applications", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

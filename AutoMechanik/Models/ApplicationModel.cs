@@ -1,12 +1,12 @@
-﻿namespace AutoMechanik.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace AutoMechanik.Models
 {
-	public interface IApplication
+	public class ApplicationModel()
 	{
-
-	}
-
-	public class ApplicationModel : IApplication
-	{
+		[Key]
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public Guid Id { get; set; } // уникальный id заявки
 		public string? Number { get; set; } // номер заявки
 		public string? NameService { get; set; } // название услуги в заявке

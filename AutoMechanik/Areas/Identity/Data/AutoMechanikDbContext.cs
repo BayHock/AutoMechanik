@@ -6,6 +6,10 @@ namespace AutoMechanik.Areas.Identity.Data;
 
 public class AutoMechanikDbContext : IdentityDbContext<AutoMechanikUser, AutoMechanikRole, string>
 {
+	public AutoMechanikDbContext()
+	{
+	}
+
 	public AutoMechanikDbContext(DbContextOptions<AutoMechanikDbContext> options)
 		: base(options)
 	{
@@ -15,6 +19,10 @@ public class AutoMechanikDbContext : IdentityDbContext<AutoMechanikUser, AutoMec
 
 	protected override void OnModelCreating(ModelBuilder builder)
 	{
-		base.OnModelCreating(builder);		
+		base.OnModelCreating(builder);
+
+		builder.Entity<ApplicationModel>()
+			.Property(p => p.Id)
+			.ValueGeneratedOnAdd();
 	}
 }
