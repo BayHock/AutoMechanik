@@ -22,7 +22,6 @@ public class AutoMechanikDbContext : IdentityDbContext<AutoMechanikUser, AutoMec
 		base.OnModelCreating(builder);
 
 		builder.Entity<ApplicationModel>()
-			.Property(p => p.Id)
-			.ValueGeneratedOnAdd();
+			.Property(x => x.Id);
 	}
 }

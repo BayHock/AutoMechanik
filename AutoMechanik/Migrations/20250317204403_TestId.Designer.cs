@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AutoMechanik.Migrations
 {
     [DbContext(typeof(AutoMechanikDbContext))]
-    [Migration("20250223132328_Applications1")]
-    partial class Applications1
+    [Migration("20250317204403_TestId")]
+    partial class TestId
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -117,23 +117,7 @@ namespace AutoMechanik.Migrations
 
             modelBuilder.Entity("AutoMechanik.Models.ApplicationModel", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime?>("DateCreate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
-
-                    b.Property<string>("NameService")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Number")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Status")
+                    b.Property<string>("Id")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
