@@ -10,24 +10,14 @@ namespace AutoMechanik.Controllers
 	public class HomeAutoServiceController : Controller
 	{
 		private readonly ILogger<HomeAutoServiceController> _logger;
-		private readonly AutoMechanikDbContext _context;
 
-		public HomeAutoServiceController(ILogger<HomeAutoServiceController> logger, AutoMechanikDbContext context)
+		public HomeAutoServiceController(ILogger<HomeAutoServiceController> logger)
 		{
 			_logger = logger;
-			_context = context;
 		}
 		public IActionResult HomeAutoServicePage()
 		{
 			return View();
-		}
-
-		[HttpPost]
-		public async Task<ActionResult> Create(ApplicationModel applicationModel)
-		{
-			_context.Applications.Add(applicationModel);
-			await _context.SaveChangesAsync();
-			return RedirectToAction("HomeAutoServicePage");
 		}
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
