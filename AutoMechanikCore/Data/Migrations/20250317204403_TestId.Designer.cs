@@ -9,11 +9,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace AutoMechanik.Migrations
+namespace AutoMechanikCore.Migrations
 {
     [DbContext(typeof(AutoMechanikDbContext))]
-    [Migration("20250212164342_AddRole")]
-    partial class AddRole
+    [Migration("20250317204403_TestId")]
+    partial class TestId
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -113,6 +113,16 @@ namespace AutoMechanik.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("AutoMechanik.Models.ApplicationModel", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Applications");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

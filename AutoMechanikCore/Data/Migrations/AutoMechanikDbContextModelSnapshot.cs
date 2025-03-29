@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace AutoMechanik.Migrations
+namespace AutoMechanikCore.Migrations
 {
     [DbContext(typeof(AutoMechanikDbContext))]
     partial class AutoMechanikDbContextModelSnapshot : ModelSnapshot
@@ -17,7 +17,7 @@ namespace AutoMechanik.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.0")
+                .HasAnnotation("ProductVersion", "9.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -119,7 +119,7 @@ namespace AutoMechanik.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Applications");
+                    b.ToTable("Applications", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

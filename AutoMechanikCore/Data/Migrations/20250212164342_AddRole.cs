@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace AutoMechanik.Migrations
+namespace AutoMechanikCore.Migrations
 {
     /// <inheritdoc />
     public partial class AddRole : Migration

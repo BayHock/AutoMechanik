@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace AutoMechanik.Migrations
+namespace AutoMechanikCore.Migrations
 {
     /// <inheritdoc />
     public partial class AddAutoMechanik : Migration
