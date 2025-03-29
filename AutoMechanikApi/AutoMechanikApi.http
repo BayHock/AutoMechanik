@@ -1,0 +1,6 @@
+@AutoMechanikApi_HostAddress = http://localhost:5159
+
+GET {{AutoMechanikApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

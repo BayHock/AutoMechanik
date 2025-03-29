@@ -1,4 +1,4 @@
-﻿using AutoMechanik.Models;
+﻿using AutoMechanikCore.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;

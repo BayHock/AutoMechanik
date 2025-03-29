@@ -1,5 +1,5 @@
-﻿using AutoMechanik.Areas.Identity.Data;
-using AutoMechanik.Models;
+﻿using AutoMechanikCore.Data;
+using AutoMechanikCore.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

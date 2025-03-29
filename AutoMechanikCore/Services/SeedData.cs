@@ -1,7 +1,8 @@
-﻿using AutoMechanik.Areas.Identity.Data;
+﻿using AutoMechanikCore.Enums;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace AutoMechanik.Services
+namespace AutoMechanikCore.Services
 {
 	public static class SeedData
 	{

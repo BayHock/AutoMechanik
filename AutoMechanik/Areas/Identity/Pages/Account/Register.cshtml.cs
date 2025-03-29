@@ -1,8 +1,8 @@
 ﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
-using AutoMechanik.Areas.Identity.Data;
-using AutoMechanik.Services;
+using AutoMechanikCore.Services;
+using AutoMechanikCore.Enums;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

@@ -1,5 +1,6 @@
-using AutoMechanik.Areas.Identity.Data;
-using AutoMechanik.Services;
+using AutoMechanikCore.Data;
+using AutoMechanikCore.Enums;
+using AutoMechanikCore.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

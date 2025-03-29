@@ -1,8 +1,9 @@
-﻿using AutoMechanik.Models;
+﻿using AutoMechanikCore.Models;
+using AutoMechanikCore.Enums;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace AutoMechanik.Areas.Identity.Data;
+namespace AutoMechanikCore.Data;
 
 public class AutoMechanikDbContext : IdentityDbContext<AutoMechanikUser, AutoMechanikRole, string>
 {

@@ -1,6 +1,6 @@
 ﻿using System.Net.Mail;
 
-namespace AutoMechanik.Services
+namespace AutoMechanikCore.Services
 {
 	public class EmailService
 	{

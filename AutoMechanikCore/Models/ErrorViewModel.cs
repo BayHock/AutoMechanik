@@ -1,4 +1,4 @@
-namespace AutoMechanik.Models
+namespace AutoMechanikCore.Models
 {
     public class ErrorViewModel
     {

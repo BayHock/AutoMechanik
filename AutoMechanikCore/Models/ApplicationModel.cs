@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AutoMechanik.Models
+namespace AutoMechanikCore.Models
 {
 	public class ApplicationModel()
 	{

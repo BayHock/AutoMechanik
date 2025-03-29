@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace AutoMechanik.Areas.Identity.Data
+namespace AutoMechanikCore.Enums
 {
 	public class AutoMechanikUser : IdentityUser
     {

@@ -5,6 +5,10 @@ VisualStudioVersion = 17.11.35431.28
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMechanik", "AutoMechanik\AutoMechanik.csproj", "{21F19DAA-5649-4CBD-A9AC-7352EB13A3D7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMechanikApi", "AutoMechanikApi\AutoMechanikApi.csproj", "{77155582-ABFA-41BF-A5CA-0EF1DA4FA4C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMechanikCore", "AutoMechanikCore\AutoMechanikCore.csproj", "{C799FE4D-6D5D-43E8-A9D9-C3C6D3CC0914}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{21F19DAA-5649-4CBD-A9AC-7352EB13A3D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21F19DAA-5649-4CBD-A9AC-7352EB13A3D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21F19DAA-5649-4CBD-A9AC-7352EB13A3D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77155582-ABFA-41BF-A5CA-0EF1DA4FA4C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77155582-ABFA-41BF-A5CA-0EF1DA4FA4C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77155582-ABFA-41BF-A5CA-0EF1DA4FA4C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77155582-ABFA-41BF-A5CA-0EF1DA4FA4C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C799FE4D-6D5D-43E8-A9D9-C3C6D3CC0914}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C799FE4D-6D5D-43E8-A9D9-C3C6D3CC0914}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C799FE4D-6D5D-43E8-A9D9-C3C6D3CC0914}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C799FE4D-6D5D-43E8-A9D9-C3C6D3CC0914}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
