@@ -1,4 +1,4 @@
-using AutoMechanikApi.Data;
+using AutoMechanikCore.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

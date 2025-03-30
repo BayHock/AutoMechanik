@@ -13,6 +13,11 @@ builder.Services.AddIdentity<AutoMechanikUser, AutoMechanikRole>(options => opti
 	.AddEntityFrameworkStores<AutoMechanikDbContext>()
 	.AddDefaultTokenProviders();
 
+builder.Services.AddHttpClient("ApiClient", client =>
+{
+	client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"]);
+});
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
