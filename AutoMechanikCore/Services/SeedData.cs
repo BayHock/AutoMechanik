@@ -1,4 +1,4 @@
-﻿using AutoMechanikCore.Enums;
+﻿using AutoMechanikCore.Models.Enums;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 

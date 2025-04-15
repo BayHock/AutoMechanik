@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace AutoMechanik.Controllers
+namespace AutoMechanikMVC.Controllers
 {
 	[Authorize(Roles = "Client")]
 	public class HomeUserController : Controller
@@ -14,7 +14,7 @@ namespace AutoMechanik.Controllers
 		{
 			_logger = logger;
 		}
-		public IActionResult HomeUserPage()
+		public IActionResult Index()
 		{
 			return View();
 		}

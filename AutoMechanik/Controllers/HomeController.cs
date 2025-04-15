@@ -2,7 +2,7 @@ using AutoMechanikCore.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace AutoMechanik.Controllers
+namespace AutoMechanikMVC.Controllers
 {
 	public class HomeController : Controller
     {

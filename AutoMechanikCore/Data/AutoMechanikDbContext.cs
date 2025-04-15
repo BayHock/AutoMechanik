@@ -1,7 +1,7 @@
 ﻿using AutoMechanikCore.Models;
-using AutoMechanikCore.Enums;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using AutoMechanikCore.Models.Enums;
 
 namespace AutoMechanikCore.Data;
 

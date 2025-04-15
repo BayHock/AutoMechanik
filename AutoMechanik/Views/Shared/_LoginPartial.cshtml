@@ -1,39 +1,33 @@
-﻿@using AutoMechanikCore.Enums
-@using Microsoft.AspNetCore.Identity
+﻿@using AutoMechanikCore.Services
 
-@inject SignInManager<AutoMechanikUser> SignInManager
-@inject UserManager<AutoMechanikUser> UserManager
+@inject ApiAuthService AuthService
 
 <ul class="navbar-nav">
-	@if (SignInManager.IsSignedIn(User))
+	@* 	@if (ApiAuthService.IsAuthenticated(Context))
 	{
 		@if (User.IsInRole("AutoService"))
 		{
 			<li class="nav-item">
-				<a id="panelApplications" class="nav-link text-dark" asp-controller="PanelApplicationsAutoService" asp-action="PanelApplicationsAutoServicePage">Панель заявок</a>
+				<a id="panelApplications" class="nav-link text-dark" asp-controller="PanelApplicationsAutoService" asp-action="Index">Панель заявок</a>
 			</li>
 		}
-		<li class="nav-item">
-			<a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)</a>
-		</li>
-		<li class="nav-item">
-			<form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-				<button id="logout" type="submit" class="nav-link btn btn-link text-dark border-0">Logout</button>
-			</form>
-		</li>
 	}
 	else //Обратить внимание на этот кусок говнакода!!!!
-	{
+	{ *@
+	@{
 		var currentRoute = ViewContext.RouteData.Values["page"]?.ToString();
 
-		string isRegisterPage = "/Account/Register";
-		string isLoginPage = "/Account/Login";
-		string isRegisterConfirmationPage = "/Account/RegisterConfirmation";
+		string isRegisterPage = "/Views/Account/Register";
+		string isLoginPage = "/Views/Account/Login";
+		string isRegisterConfirmationPage = "/Views/Account/RegisterConfirmation";
 
 		if (currentRoute != isRegisterPage && currentRoute != isLoginPage && currentRoute != isRegisterConfirmationPage)
 		{
 			<li class="nav-item">
-				<a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Начать пользоваться веб-сервисом</a>
+				<a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Регистрация</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Войти в аккаунт</a>
 			</li>
 		}
 	}

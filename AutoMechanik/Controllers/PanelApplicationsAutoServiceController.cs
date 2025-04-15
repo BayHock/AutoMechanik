@@ -1,34 +1,33 @@
-﻿using AutoMechanikCore.Data;
-using AutoMechanikCore.Models;
+﻿using AutoMechanikCore.Models;
+using AutoMechanikCore.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
-namespace AutoMechanik.Controllers
+namespace AutoMechanikMVC.Controllers
 {
 	[Authorize(Roles = "AutoService")]
 	public class PanelApplicationsAutoServiceController : Controller
 	{
-		private readonly AutoMechanikDbContext _context;
+		private readonly ApiApplicationService _applicationService;
 		private readonly ILogger<PanelApplicationsAutoServiceController> _logger;
 
-		public PanelApplicationsAutoServiceController (ILogger<PanelApplicationsAutoServiceController> logger, AutoMechanikDbContext context)
+		public PanelApplicationsAutoServiceController (ILogger<PanelApplicationsAutoServiceController> logger, ApiApplicationService applicationService)
 		{
+			_applicationService = applicationService;
 			_logger = logger;
-			_context = context;
-		}
 
-		public async Task<ActionResult> PanelApplicationsAutoServicePage()
+		}
+		public async Task<IActionResult> Index()
 		{
-			return View(await _context.Applications.ToListAsync());
+			var applications = await _applicationService.GetApplicationsAsync();
+			return View(applications);
 		}
 
 		[HttpPost]
-		public async Task<ActionResult> AddApplicationDb(ApplicationModel applicationModel)
+		public async Task<IActionResult> Create(ApplicationModel application)
 		{
-			_context.Applications.Add(applicationModel);
-			await _context.SaveChangesAsync();
+			await _applicationService.CreateApplicationAsync(application);
 			return RedirectToAction("PanelApplicationsAutoServicePage");
 		}
 

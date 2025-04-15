@@ -1,17 +1,6 @@
-using AutoMechanikCore.Data;
-using AutoMechanikCore.Enums;
 using AutoMechanikCore.Services;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("AutoMechanikDbContextConnection") ?? throw new InvalidOperationException("Connection string 'AutoMechanikDbContextConnection' not found.");
-
-builder.Services.AddDbContext<AutoMechanikDbContext>(options => options.UseNpgsql(connectionString));
-
-builder.Services.AddIdentity<AutoMechanikUser, AutoMechanikRole>(options => options.SignIn.RequireConfirmedAccount = true)
-	.AddEntityFrameworkStores<AutoMechanikDbContext>()
-	.AddDefaultTokenProviders();
 
 builder.Services.AddHttpClient("ApiClient", client =>
 {
@@ -21,25 +10,9 @@ builder.Services.AddHttpClient("ApiClient", client =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
-
-// Settings register password
-builder.Services.Configure<IdentityOptions>(options =>
-{
-	options.Password.RequireUppercase = false;
-	options.Password.RequiredLength = 1;
-	options.Password.RequiredUniqueChars = 0;
-	options.Password.RequireNonAlphanumeric = false;
-	options.Password.RequireDigit = false;
-	options.Password.RequireLowercase = false;
-});
+builder.Services.AddScoped<ApiAuthService>();
 
 var app = builder.Build();
-
-using (var scope = app.Services.CreateScope())
-{
-	var services = scope.ServiceProvider;
-	await SeedData.Initialize(services);
-}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
