@@ -1,14 +1,14 @@
 ﻿using AutoMechanikCore.Models.Dtos.Account;
-using AutoMechanikCore.Services;
+using AutoMechanikMVC.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutoMechanikMVC.Controllers
 {
 	public class AccountController : Controller
 	{
-		private readonly ApiAuthService _authService;
+		private readonly AuthService _authService;
 
-		public AccountController(ApiAuthService authService)
+		public AccountController(AuthService authService)
 		{
 			_authService = authService;
 		}
@@ -32,7 +32,7 @@ namespace AutoMechanikMVC.Controllers
 				return View(dto);
 
 			var result = await _authService.Register(dto);
-			return result ? RedirectToAction("Index", "HomeUser") : View("Error");
+			return result ? RedirectToAction("Index", "Home") : View("Error");
 		}
 
 		[HttpPost]

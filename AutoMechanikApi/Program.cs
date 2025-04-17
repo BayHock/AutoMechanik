@@ -1,3 +1,4 @@
+using AutoMechanikApi.Services;
 using AutoMechanikCore.Data;
 using AutoMechanikCore.Models.Enums;
 using AutoMechanikCore.Services;
@@ -29,6 +30,10 @@ builder.Services.Configure<IdentityOptions>(options =>
 });
 
 builder.Services.AddControllers();
+
+builder.Services.AddScoped<AuthService>();
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

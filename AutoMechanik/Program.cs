@@ -1,4 +1,4 @@
-using AutoMechanikCore.Services;
+using AutoMechanikMVC.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +10,7 @@ builder.Services.AddHttpClient("ApiClient", client =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
-builder.Services.AddScoped<ApiAuthService>();
+builder.Services.AddScoped<AuthService>();
 
 var app = builder.Build();
 

@@ -1,15 +1,14 @@
 ﻿using AutoMechanikCore.Models.Dtos.Account;
-using System.Net.Http.Json;
 
-namespace AutoMechanikCore.Services
+namespace AutoMechanikMVC.Services
 {
-	public class ApiAuthService
+	public class AuthService
 	{
 		private readonly HttpClient _httpClient;
 
-		public ApiAuthService(HttpClient httpClient)
+		public AuthService(IHttpClientFactory httpClientFactory)
 		{
-			_httpClient = httpClient;
+			_httpClient = httpClientFactory.CreateClient("ApiClient");
 		}
 
 		public async Task<bool> Register(RegisterDto registerDto)
