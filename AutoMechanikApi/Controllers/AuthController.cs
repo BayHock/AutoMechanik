@@ -23,5 +23,14 @@ namespace AutoMechanikApi.Controllers
 				? Ok(result)
 				: BadRequest(result);
 		}
+
+		[HttpPost("login")]
+		public async Task<IActionResult> Login([FromBody] LoginDto dto)
+		{
+			var result = await _authService.Login(dto);
+			return result.Success
+				? Ok(result)
+				: BadRequest(result);
+		}
 	}
 }

@@ -18,18 +18,18 @@
 		<label asp-for="Password">Password</label>
 		<span asp-validation-for="Password" class="text-danger"></span>
 	</div>
-@* 	<div class="form-floating mb-3">
+	<div class="form-floating mb-3">
 		<button type="button" onclick="selectRole('Client')">Клиент</button>
 		<button type="button" onclick="selectRole('AutoService')">Автосервис</button>
 		<input asp-for="Role" type="hidden" id="selectedRole" />
 		<span asp-validation-for="Role"></span>
-	</div> *@
+	</div>
 	<button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Зарегистрироваться</button>
 </form>
 
 
 
-@* @section Scripts {
+@section Scripts {
 	<partial name="_ValidationScriptsPartial" />
 	<script>
 		function selectRole(role) {
@@ -37,4 +37,4 @@
 			console.log('Выбрана роль: ' + role);
 		}
 	</script>
-} *@
+}

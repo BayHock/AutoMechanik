@@ -25,6 +25,12 @@ namespace AutoMechanikMVC.Controllers
 			return View();
 		}
 
+		[HttpGet]
+		public IActionResult ConfirmEmail()
+		{
+			return View();
+		}
+
 		[HttpPost]
 		public async Task<IActionResult> Register(RegisterDto dto)
 		{

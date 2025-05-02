@@ -14,7 +14,7 @@ namespace AutoMechanikCore.Models.Dtos.Account
 		[Display(Name = "Password")]
 		public string Password { get; set; }
 
-		//[Required]
-		//public string Role { get; set; }
+		[Required]
+		public string Role { get; set; }
 	}
 }

@@ -13,10 +13,24 @@ builder.Services.AddDbContext<AutoMechanikDbContext>(options => options.UseNpgsq
 
 builder.Services.AddDataProtection();
 
+builder.Services.AddAuthentication(options =>
+{
+	options.DefaultScheme = IdentityConstants.ApplicationScheme;
+	options.DefaultSignInScheme = IdentityConstants.ApplicationScheme;
+})
+.AddCookie(IdentityConstants.ApplicationScheme, options =>
+{
+	options.LoginPath = "/Account/Login";
+	options.AccessDeniedPath = "/Account/AccessDenied";
+});
+
 builder.Services.AddIdentityCore<AutoMechanikUser>(options => options.SignIn.RequireConfirmedAccount = false)
 	.AddRoles<AutoMechanikRole>()
+	.AddSignInManager<SignInManager<AutoMechanikUser>>()
 	.AddEntityFrameworkStores<AutoMechanikDbContext>()
 	.AddDefaultTokenProviders();
+
+builder.Services.AddSingleton<TimeProvider>(_ => TimeProvider.System);
 
 // Settings register password
 builder.Services.Configure<IdentityOptions>(options =>
@@ -56,6 +70,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
